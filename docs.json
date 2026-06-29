@@ -8,18 +8,20 @@
     "light": "#07C983",
     "dark": "#0D9373"
   },
-  "navigation": [
-    {
-      "group": "Getting Started",
-      "pages": ["index"]
-    },
-    {
-      "group": "API Reference",
-      "pages": [
-        "api-reference/invoices",
-        "api-reference/disputes",
-        "api-reference/refunds"
-      ]
-    }
-  ]
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Getting Started",
+        "pages": ["index"]
+      },
+      {
+        "tab": "API Reference",
+        "pages": [
+          "api-reference/invoices",
+          "api-reference/disputes",
+          "api-reference/refunds"
+        ]
+      }
+    ]
+  }
 }
