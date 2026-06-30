@@ -12,7 +12,7 @@
     "tabs": [
       {
         "tab": "Getting Started",
-        "pages": ["index"]
+        "pages": ["index", "authentication"]
       },
       {
         "tab": "API Reference",
