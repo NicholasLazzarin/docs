@@ -1,1 +1,61 @@
+---
+title: Authentication
+description: How to authenticate requests to the PayFlow API
+---
 
+This page explains how to authenticate your requests to the PayFlow API.
+
+## API keys
+
+PayFlow uses API keys to authenticate requests. You can find your API key
+in the **Developers** section of your PayFlow dashboard.
+
+Include your API key in the `Authorization` header of every request:
+
+```
+Authorization: Bearer sk_live_4f9a1b2c3d5e6f7g8h9i
+```
+
+<Warning>
+  API keys are secret. Do not expose them in client-side code, public
+  repositories, or any environment accessible to end users. If a key is
+  compromised, revoke it immediately from your dashboard and generate a new one.
+</Warning>
+
+## Test and live keys
+
+PayFlow provides two types of API keys:
+
+| Key type | Prefix | Description |
+|----------|--------|-------------|
+| Test     | `sk_test_` | Used in the sandbox environment. No real funds are transferred. Use this key while building and testing your integration. |
+| Live     | `sk_live_` | Used in production. Requests made with a live key process real transactions. |
+
+## Example request
+
+```bash
+curl https://api.payflow.io/v1/invoices \
+  -H "Authorization: Bearer sk_test_4f9a1b2c3d5e6f7g8h9i" \
+  -H "Content-Type: application/json"
+```
+
+## Generating an API key
+
+1. Log in to your PayFlow dashboard.
+2. Navigate to **Developers > API Keys**.
+3. Click **Create new key**.
+4. Choose whether the key is for the test or live environment.
+5. Copy the key and store it securely. PayFlow does not display the full key again after creation.
+
+## Revoking an API key
+
+If a key is compromised or no longer needed, revoke it from **Developers > API Keys**
+by clicking **Revoke** next to the key. Requests made with a revoked key
+immediately receive a `401 Unauthorized` response.
+
+## Authentication errors
+
+| Status | Meaning |
+|--------|---------|
+| `401 Unauthorized` | The `Authorization` header is missing, or the API key is invalid or has been revoked. |
+| `403 Forbidden` | The API key is valid but does not have permission to perform this action. |
